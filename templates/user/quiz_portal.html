@@ -6,6 +6,12 @@
     {% for entry in quiz_total_list %}
     <div class="card quiz-container">
     <h3>{{entry.name}}</h3>
+    <div id="desktop">
+        <hr/>
+        {% for question in entry.questions %}
+        <p>{{question.name}}</p>
+        {% endfor %}
+    </div>
     <button id="play-btn"><a href="{{url_for("user_view.play_quiz", quiz_title=entry.name)}}">Play</a></button>
     </div>
     {% endfor %}

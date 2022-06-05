@@ -2,9 +2,9 @@
 {% block content %}
 {% if current_user %}
 <div class="main-title">   
-    <h1 class="card-title">Welcome to Webbiskools Quiz App!</h1>
+    <h1 class="card-title" id="main-header">Welcome to Webbiskools Quiz App!</h1>
     <hr/>
-    <img src="{{url_for('static', filename="images/quiztitle.png")}}" alt="">
+    <a href="{{ url_for('login_views.dashboard')}}"><img src="{{url_for('static', filename="images/quiztitle.png")}}" alt=""></a>
 </div>
 
 {% else %}
