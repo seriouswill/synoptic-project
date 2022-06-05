@@ -1,0 +1,8 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+{{ super() }}
+<h1>Welcome Admin</h1>
+<a href="{{ url_for('my_view.home')}}">Home</a>
+        <a href="{{ url_for('login_views.dashboard')}}">Dashboard</a>
+{% endblock %}

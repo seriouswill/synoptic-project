@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="page-title">Quiz: {{quiz_title.name}}</h1>
+<hr/>
+<div id="main">
+    <div class="slider">
+        <!-- This gives us our nav buttons across the top -->
+        {% for x in range(total) %}
+        <a href="#{{quiz_title.questions[x].id}}">{{x+1}}</a>
+        {% endfor %}
+        <!-- Now the questions inside the slides -->
+        <form action="/play_quiz/{{quiz_title.name}}" method="POST">
+            <div class="slides">
+                {% for question in quiz_title.questions %}
+                <div class="container" id="{{ question.id }}">
+                    <h3>Question: </h3>
+                    <span id="question-header">{{question.name}}</span>
+
+                    <h3>Possible Answers:</h3>
+                    <div id="answerbox">
+                        {% for answer in question.answers %}
+                        <div id="answer-pair">
+                        <span>{{answer.name}}</span>
+                        <input type="checkbox" name="answer-checkbox-{{answer.name}}"
+                            id="answer-checkbox-{{answer.name}}">
+                            <span class="geekmark"></span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button id="submit-quiz" type="submit">Submit!</button>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

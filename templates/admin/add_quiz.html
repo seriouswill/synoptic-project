@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="height-box">
+{% if added_prev %}
+<h2>Quiz added successfully</h2>
+{% else %}
+<h2>Add quiz below</h2>
+{% endif %}
+<br>
+<form action="/add_quiz" method="POST" name="add_quiz" id="add_quiz">
+    <label for="quiz_name">What is the name of this Quiz?</label>
+    <input class="form-control form-control-lg" type="text" name="quiz_name" id="quiz_name" placeholder="{{quiz_name}}">
+    <input type="submit" value="Submit" name="Submit" />
+</form>
+</div>
+{% endblock %}

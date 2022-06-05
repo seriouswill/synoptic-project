@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div id="displaybox">
+    <h3>{{quiz_obj.name}}</h3>
+</div>
+
+<form action="/update/{{quiz_obj.name}}" method="POST" name="update_quiz">
+    <div>
+        <input name="quiz_name" id="quiz_name" value="{{quiz_name}}">
+        {% for question in quiz_obj.questions %}
+        <h4>Question: {{ question.name }}</h4>
+        <label for="{{question.name}}">What is the text for this Question?</label>
+        <input type="text" name="{{question.name}}" id="{{question.name}}" value="{{ question.name }}">
+        <br>
+        {% for answer in question.answers %}
+            <li>{{ answer.name }}</li>
+            <label for="answer_name1">Answer - </label>
+            <input value="{{ answer.name }}" type="text" name="{{ answer.name }}" id="{{ answer.name }}">
+            {% endfor %}
+    
+    {% endfor %}
+    <input type="submit" value="Submit" name="Submit"/>
+</form>
+<button><a href="{{url_for("my_view.add_questions", quiz_name=quiz_obj.name)}}">Add Question</a></button>
+    {% endblock %}

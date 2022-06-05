@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if quiz_name %}
+<div class="mb-3" id="height-box">
+    <form action="/add_questions/{{quiz_name}}" method="POST" name="add_questions">
+        
+        <input name="quiz_name" id="quiz_name" value="{{quiz_name}}">
+        <div class="col">
+        <label for="question_name">What is the text for this Question?</label>
+        <input type="text" class="form-control" name="question_name" id="question_name"></div>
+        <div class="row">
+            <div class="col">
+                <label for="answer_name1">Answer One - </label>
+                <input class="form-control form-control-sm" type="text" name="answer_name1" id="answer_name1">
+            </div>
+            <div class="col">
+                <label for="answer_name2">Answer Two - </label>
+                <input class="form-control form-control-sm" type="text" name="answer_name2" id="answer_name2">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="answer_name3">Answer Three - </label>
+                <input class="form-control form-control-sm" type="text" name="answer_name3" id="answer_name3">
+            </div>
+            <div class="col">
+                <label for="answer_name4">Answer Four - </label>
+                <input class="form-control form-control-sm" type="text" name="answer_name4" id="answer_name4">
+            </div>
+        </div>
+        <br>
+        <h3>Correct?</h3>
+        <div class="form-check form-check-inline" id="radiobox">
+            <input class="btn btn-outline-success" type="radio" name="correct_answer" id="correct_answer1" value="1">One
+            <input class="btn btn-outline-success" type="radio" name="correct_answer" id="correct_answer2" value="2">Two
+            <input class="btn btn-outline-success" type="radio" name="correct_answer" id="correct_answer3"
+                value="3">Three
+            <input class="btn btn-outline-success" type="radio" name="correct_answer" id="correct_answer4"
+                value="4">Four
+        </div>
+
+        <input type="submit" value="Submit" name="Submit" />
+</form>
+{% endif %}
+<hr/>
+<a href="{{url_for("my_view.add_quiz")}}">
+    <h3>New Quiz</h3>
+</a>
+</div>
+{% endblock %}

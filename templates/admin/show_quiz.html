@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<script>
+    function confirm() {
+        if (!alert('Delete quiz, are you sure!?')) { window.location.reload(); }
+    }
+</script>
+<!-- <button onclick="reload()">Reload Quizzes</button> -->
+<div id="quiz-list">
+
+    {% for entry in quizzes %}
+    <div id="displaybox" class="card">
+        <h3>{{entry.name}}</h3>
+        
+        {% for question in entry.questions %}
+        <h4> - {{ question.name }} ?</h4>
+        <ul class="list-group list-group-flush">
+        {% for answer in question.answers %}
+
+        <li class="list-group-item">{{ answer.name }}</li>
+        
+        {% endfor %}
+        </ul>
+        {% endfor %}
+        <button onclick="confirm()" class="btn btn-danger"><a href="{{url_for("my_view.delete",
+            entry_name=entry.name)}}">Delete</a></button>
+    <button class="btn btn-warning"><a href="{{url_for("my_view.update",
+            entry_name=entry.name)}}">Update</a></button>
+
+    </div>
+    
+    {% endfor %}
+</div>
+{% endblock %}

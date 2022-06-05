@@ -1,0 +1,155 @@
+* {
+    box-sizing: border-box;
+}
+
+
+/*! COLORS */
+
+:root {
+    --lerouge: #FB4D3D;
+    --leorange: #F79256;
+    --leblue: #2EC4B6;
+    --lewhite: #FDFFFC;
+    --lenoir: #011627;
+}
+
+#answerbox {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    font-size: 18px;
+    padding: 6px;
+    padding-bottom: 1.8rem;
+}
+
+#answer-pair {
+    display: flex;
+    margin-top: 1rem;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+.slider {
+    width: 300px;
+    text-align: center;
+    overflow: hidden;
+
+}
+
+.slides {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+
+
+
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+
+    /*
+    scroll-snap-points-x: repeat(300px);
+    scroll-snap-type: mandatory;
+    */
+}
+
+.slides::-webkit-scrollbar {
+    width: 10px;
+    height: 15px;
+}
+
+.slides::-webkit-scrollbar-thumb {
+    background: var(--lenoir);
+    border-radius: 10px;
+}
+
+.slides::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.slides>div {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    width: 300px;
+    
+    margin-right: 50px;
+    border-radius: 10px;
+    background: var(--lewhite);
+    transform-origin: center center;
+    transform: scale(1);
+    transition: transform 0.5s;
+    position: relative;
+
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+
+}
+
+/* .slides>div:target {
+    transform: scale(0.8);
+} */
+
+
+.slider>a {
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    background: var(--leorange);
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 0 0.5rem 0;
+    position: relative;
+    color: var(--lewhite);
+}
+
+.slider>a:active {
+    top: 1px;
+}
+
+.slider>a:focus {
+    background: #000;
+}
+
+/* 
+  /* Don't need button navigation 
+  @supports (scroll-snap-type) {
+    .slider > a {
+      display: none;
+    }
+  } */
+
+
+#main {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+
+}
+
+#submit-quiz {
+    background: linear-gradient(to top, var(--leorange), var(--lewhite));
+    border-radius: 20px;
+    border: #F79256;
+    color: #011627;
+    /* width: 8rem;
+    height: 4rem; */
+    font-size: 24px;
+    
+}
+
+#submit-quiz:hover {
+    background-color: #FDFFFC;
+    border-radius: 20px;
+    border: 2px #F79256 solid;
+    color: #2EC4B6;
+    /* width: 8rem;
+    height: 4rem; */
+    font-size: 24px;
+    text-decoration: underline;
+}

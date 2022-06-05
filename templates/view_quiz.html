@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div id="quiz-list">
+
+    {% for entry in quizzes %}
+    <div id="displaybox" class="card">
+        <h3>{{entry.name}}</h3>
+        
+        {% for question in entry.questions %}
+        <h4> - {{ question.name }} ?</h4>
+        <ul class="list-group list-group-flush">
+        {% for answer in question.answers %}
+
+        <li class="list-group-item">???</li>
+        
+        {% endfor %}
+        </ul>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

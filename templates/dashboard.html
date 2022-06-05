@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+  
+<h1 class="page-title">Your Dashboard</h1>
+<hr/>
+<div id="dashboard-box">
+<h1>WELCOME {{current_user.email }}</h1>
+{% if "Admin" in current_user.roles %}
+<img src="{{url_for('static', filename="images/admin.png")}}" alt="">
+{% else %}
+<img src="{{url_for('static', filename="images/user.png")}}" alt="">
+{% endif %}
+<h3>Your role is set to {{ current_user.roles[0].name }}</h3>
+<hr/>
+<div id="score-box">
+
+{% if quiz_score_title_list %}
+{% for title in quiz_score_title_list %}
+<h3>In quiz: <span>{{title.quiz_name}}</span> <br>you scored <span>{{title.quiz_score}}</span> out of <span>{{title.quiz_max_score}}</span>!!</h3>
+{% endfor %}
+</div>
+{% else %}
+<div id="yet-box">
+<h2>You have yet to take a quiz</h2>
+</div>
+{% endif %}
+</div>
+{% endblock %}

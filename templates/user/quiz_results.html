@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="page-title">Results: {{quiz_title.name}}</h1>
+<hr/>
+<h1>Your results for that quiz were:</h1>
+
+<h2>{{result}} out of {{total}}</h2>
+
+{% if result == total%}
+<h1>Well done!</h1>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="page-title">Register</h1>
+<hr/>
+<div id="register-box">
+
+<form action="/register" method="POST">
+    <div class="mb-3">
+        Username: <input type="text" class="form-control" name="username" id="username_input">
+    </div>
+    <div class="mb-3">
+        Email: <input type="email" class="form-control" name="email" id="email_input">
+    </div>
+    <div class="mb-3">
+        Password: <input type="password" class="form-control" name="password" id="password_input">
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+    </div>
+</form>
+
+</div>
+{% endblock %}
