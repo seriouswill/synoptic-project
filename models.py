@@ -28,3 +28,6 @@ class Answer(db.Model):
     name = db.Column(db.String(300), nullable=False)
     correct = db.Column(db.Boolean, default=False, nullable=False)
     question_id = db.Column(db.Integer, db.ForeignKey('question.id'), nullable=False)
+
+def create_db_models():
+    db.create_all()

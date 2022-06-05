@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Results From Database</h1>
+<hr/>
+<div id="results-box">
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="flashes">
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% for entry in show_results %}
+<div id="displaybox" class="card">
+    {% if "User" in current_user.roles %}
+    <div id="play-search"><h3>{{entry.name}}</h3>
+    <button id="play-btn"><a href="{{url_for("user_view.play_quiz", quiz_title=entry.name)}}">Play</a></button></div>
+    
+    {% else %}
+    <h3>{{entry.name}}</h3>
+    {% endif %}
+    {% for question in entry.questions %}
+    <h4> - {{ question.name }} ?</h4>
+    <ul class="list-group list-group-flush">
+    {% for answer in question.answers %}
+
+    <li class="list-group-item">{{ answer.name }}</li>
+    
+    {% endfor %}
+    </ul>
+    {% endfor %}
+</div>
+
+{% endfor %} 
+</div>
+{% endblock %}
