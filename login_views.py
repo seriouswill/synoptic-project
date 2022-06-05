@@ -51,20 +51,6 @@ class CustomLoginForm(LoginForm):
 def login_custom():
     return render_template("security/login_custom.html")
 
-# @login_views.route('/login',  methods=["GET", "POST"])
-# def login():
-#     form = LoginForm()
-
-#     if form.validate_on_submit():
-#         user = User.query.filter_by(username=form.username.data).first()
-#         if user:
-#             if check_password_hash(user.password, form.password.data):
-#                 login_user(user, form.remember.data)
-#                 return redirect(url_for('login_views.dashboard'))
-#     else:
-#         return render_template("login.html", form=form, invalid=False)
-#     return render_template("login.html", form=form, invalid=True)
-
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 security = Security(app, user_datastore, login_form=CustomLoginForm)
 
@@ -84,20 +70,6 @@ def register():
         db.session.commit()
     return render_template("register.html")
 
-
-# @login_views.route('/signup', methods=["GET", "POST"])
-# def signup():
-#     form = RegisterForm()
-#     default_role = [Role.query.filter_by(name="User").first()]
-#     if form.validate_on_submit():
-#         hashed_password = generate_password_hash(form.password.data, method="sha256")
-#         new_user = User(username=form.username.data, email=form.email.data, password=hashed_password, roles=default_role)
-#         db.session.add(new_user)
-#         db.session.commit()
-#     return render_template("signup.html", form=form)
-
-
-
 @login_views.route('/logout')
 @login_required
 def logout():
@@ -111,3 +83,6 @@ def dashboard():
 
     quiz_score_title_list = QuizScore.query.filter_by(user_id=current_user.id).all()
     return render_template("dashboard.html", name=current_user.username, quiz_score_title_list=quiz_score_title_list)
+
+def create_db_users():
+    db.create_all()
