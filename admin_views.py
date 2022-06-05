@@ -1,11 +1,48 @@
 from flask import render_template, flash, redirect, Blueprint, request, url_for
 from models import Quiz, Question, Answer, db
 from flask_login import login_required, current_user
+from forms import SearchForm
+
 my_view = Blueprint('my_view', __name__)
 
-@my_view.route("/")
+@my_view.route("/", methods=["GET", "POST"])
 def home():
     return render_template("index.html")
+
+@my_view.route('/search')
+def search():
+    query = request.args['search']
+    print("step two")
+    results = Quiz.query.all()
+    show_results = []
+    for entry in results:
+        if query in entry.name:
+            show_results.append(entry)
+    print("step three")
+    return render_template("results.html", show_results=show_results)
+
+
+# @my_view.route('/results')
+# def search_results(search):
+#     # results = []
+#     # search_string = search.data['search']
+#     # print(f"this is worling {search_string}")
+#     # print(search_string)
+#     # if search.data['search'] == '':
+#     #     qry = Quiz.query.all()
+#     #     results = qry.all()
+#     # results = Quiz.query.all()
+#     results = []
+#     for entry in results:
+#         if search in entry.name:
+#             results.append(entry)
+#             print(results)
+#     if not results:
+#         flash('No results found!')
+#         return redirect('/')
+#     else:
+#         # display results
+#         return render_template('results.html', results=results)
 
 @my_view.route("/view_quiz")
 def view_quiz():
@@ -137,3 +174,4 @@ def update(entry_name):
         return render_template("admin/update_quiz.html", quizzes=quizzes, quiz_obj=quiz_obj, quiz_name=entry_name)
     else:
         return redirect(url_for("login_views.dashboard"))
+

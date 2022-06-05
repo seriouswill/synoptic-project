@@ -69,6 +69,7 @@ body {
 
 h1 {
     font-family: 'bella', sans-serif;
+    margin-left: 1.5rem;
 }
 
 #answerbox span,
@@ -247,6 +248,21 @@ footer div a {
     font-weight: 300;
 }
 
+#results-box {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100vh;
+}
+
+#play-search {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#play-search #play-btn {
+    min-width: 50%;
+}
 
 /* Media Queeries */
 
@@ -315,6 +331,17 @@ footer div a {
 
     #desktop {
         display: none;
+    }
+
+    #results-box {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: flex-start;
+    }
+
+    #displaybox {
+        min-width: 96%;
     }
   }
 
