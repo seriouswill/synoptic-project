@@ -187,6 +187,7 @@ footer div a {
 .page-title {
     font-family: 'bella', sans-serif;
     font-weight: bold;
+    margin-left: 3rem;
 }
 
 #dashboard-box {

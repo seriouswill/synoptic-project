@@ -137,3 +137,26 @@ def update(entry_name):
         return render_template("admin/update_quiz.html", quizzes=quizzes, quiz_obj=quiz_obj, quiz_name=entry_name)
     else:
         return redirect(url_for("login_views.dashboard"))
+
+from wtforms import StringField
+from wtforms.validators import DataRequired
+
+class SearchForm(Form):
+    search = StringField('search', [DataRequired()])
+    submit = SubmitField('Search',
+                        render_kw={'class': 'btn btn-success btn-block'})
+
+
+@app.route('/search', methods=['POST', 'GET'])
+@login_required
+def search():
+    form = SearchForm()
+    if not form.validate_on_submit():
+        return redirect(url_for('index'))
+    return redirect((url_for('search_results', query=form.search.data)))
+
+@app.route('/search_results/<query>')
+@login_required
+def search_results(query):
+    results = Quiz.query.filter_by(name=query)
+    return render_template('search_results.html', query=query, results=results)
