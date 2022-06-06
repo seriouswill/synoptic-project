@@ -82,3 +82,8 @@
 ## Behaviour Implementation
 
 ### see "./test_db_models.py"
+
+# Tested implementation
+
+The test suite ran well, and I utilised Test Driven Development in order to ensure that my models were up to scratch.
+
